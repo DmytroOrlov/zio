@@ -345,7 +345,7 @@ object Exit extends Serializable {
 
       // Java 11 defines String#lines returning a Stream<String>, so the implicit conversion has to
       // be requested explicitly
-      def lines(str: String): List[String] = augmentString(str).lines.toList
+      def lines(str: String): List[String] = augmentString(str).linesIterator.toList
 
       def renderThrowable(e: Throwable): List[String] = {
         import java.io.{ PrintWriter, StringWriter }
