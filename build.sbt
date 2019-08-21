@@ -1,7 +1,6 @@
 // shadow sbt-scalajs' crossProject from Scala.js 0.6.x
 import sbtcrossproject.CrossPlugin.autoImport.crossProject
 import BuildHelper._
-import xerial.sbt.Sonatype._
 import explicitdeps.ExplicitDepsPlugin.autoImport.moduleFilterRemoveValue
 
 name := "zio"
@@ -19,9 +18,6 @@ inThisBuild(
         url("http://degoes.net")
       )
     ),
-    pgpPublicRing := file("/tmp/public.asc"),
-    pgpSecretRing := file("/tmp/secret.asc"),
-    releaseEarlyWith := SonatypePublisher,
     scmInfo := Some(
       ScmInfo(url("https://github.com/zio/zio/"), "scm:git:git@github.com:zio/zio.git")
     )
@@ -43,6 +39,9 @@ addCommandAlias(
 lazy val root = project
   .in(file("."))
   .settings(
+    inThisBuild(Seq(
+      publishTo := Some("releases" at "https://nexus.com/nexus/content/repositories/releases")
+    )),
     skip in publish := true,
     console := (console in Compile in coreJVM).value,
     unusedCompileDependenciesFilter -= moduleFilter("org.scala-js", "scalajs-library")
