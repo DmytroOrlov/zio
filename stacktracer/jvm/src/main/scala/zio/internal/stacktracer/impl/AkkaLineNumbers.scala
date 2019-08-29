@@ -18,6 +18,7 @@ package zio.internal.stacktracer.impl
 
 import java.io.{ DataInputStream, InputStream }
 import java.lang.invoke.SerializedLambda
+import java.lang.reflect.Method
 
 import scala.annotation.switch
 import scala.util.control.NonFatal
@@ -193,7 +194,7 @@ object AkkaLineNumbers {
   def getStreamForLambda(l: AnyRef): Option[(InputStream, String, Some[String])] =
     try {
       val c            = l.getClass
-      val writeReplace = c.getDeclaredMethod("writeReplace")
+      val writeReplace: Method = ??? //c.getDeclaredMethod("writeReplace")
       writeReplace.setAccessible(true)
       writeReplace.invoke(l) match {
         case serialized: SerializedLambda =>

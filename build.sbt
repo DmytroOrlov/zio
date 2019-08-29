@@ -37,7 +37,7 @@ lazy val root = project
   .in(file("."))
   .settings(
     inThisBuild(Seq(
-      publishTo := Some("releases" at "https://nexus.com/nexus/content/repositories/releases")
+      publishTo := Some("releases" at "https://nexus.kreditech.com/nexus/content/repositories/releases")
     )),
     skip in publish := true,
     console := (console in Compile in coreJVM).value,

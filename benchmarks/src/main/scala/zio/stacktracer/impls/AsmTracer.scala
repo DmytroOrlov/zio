@@ -17,6 +17,7 @@
 package zio.stacktracer.impls
 
 import java.lang.invoke.SerializedLambda
+import java.lang.reflect.Method
 
 import org.objectweb.asm._
 import zio.internal.stacktracer.Tracer
@@ -37,7 +38,8 @@ final class AsmTracer extends Tracer {
     val clazz       = lambda.getClass
     val classLoader = clazz.getClassLoader
 
-    Try(clazz.getDeclaredMethod("writeReplace")) match {
+    val writeReplace: Method = ??? //clazz.getDeclaredMethod("writeReplace")
+    Try(writeReplace) match {
       case Failure(_) =>
         val name   = clazz.getName
         val reader = new ClassReader(classLoader.getResourceAsStream(name.replace('.', '/') + ".class"))
