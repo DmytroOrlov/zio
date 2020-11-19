@@ -20,9 +20,6 @@ inThisBuild(
         url("http://degoes.net")
       )
     ),
-    pgpPassphrase := sys.env.get("PGP_PASSPHRASE").map(_.toArray),
-    pgpPublicRing := file("/tmp/public.asc"),
-    pgpSecretRing := file("/tmp/secret.asc")
   )
 )
 
@@ -487,3 +484,7 @@ lazy val docs = project.module
     // , coreJS // Disabled until mdoc supports ScalaJS 1.1
   )
   .enablePlugins(MdocPlugin, DocusaurusPlugin)
+
+ThisBuild / dynverSeparator in ThisBuild := "-"
+
+// ThisBuild / publishTo := Some("releases" at "https://nexus.com/nexus/content/repositories/releases")
