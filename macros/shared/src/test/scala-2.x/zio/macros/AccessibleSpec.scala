@@ -33,7 +33,7 @@ object AccessibleSpec extends DefaultRunnableSpec {
             @accessible
             trait Module
           """
-        })(isLeft(anything))
+        })(isRight(anything))
       },
       testM("fails when applied to class") {
         assertM(typeCheck {

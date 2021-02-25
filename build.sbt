@@ -512,3 +512,7 @@ lazy val docs = project.module
   .settings(mdocJS := Some(jsdocs))
   .dependsOn(coreJVM, streamsJVM, testJVM, testMagnoliaJVM, coreJS)
   .enablePlugins(MdocPlugin, DocusaurusPlugin)
+
+ThisBuild / dynverSeparator in ThisBuild := "-"
+
+// ThisBuild / publishTo := Some("releases" at "https://nexus.com/nexus/content/repositories/releases")
